@@ -1,0 +1,56 @@
+nav:
+  - 主页: index.md
+  - 安装指南:
+      - user_guide/install/README.md
+      - 安装说明: user_guide/install/installation_introduction.md
+      - MindIE安装: 
+        - 环境准备: user_guide/install/source/environment_preparation.md
+        - 镜像安装:
+          - 镜像使用指南: user_guide/install/source/image_usage_guide.md
+          - Docker 安装: user_guide/install/source/docker_installation.md
+        - 物理机安装:
+          - 准备软件包和依赖: user_guide/install/source/preparing_software_and_dependencies.md
+          - 安装软件包和依赖: user_guide/install/source/installing_software_and_dependencies.md
+          - 安装MindIE软件包: user_guide/install/source/installation_on_a_physical_machine.md
+        - 容器化安装: user_guide/install/source/installation_in_containerized.md
+      - MindIE-SD独立安装: 
+        - pip源安装: user_guide/install/source/installation_via_pip.md
+        - 源码编译安装: user_guide/install/source/installation_from_source_code.md
+      - 升级: user_guide/install/source/upgrade.md
+      - 卸载: user_guide/install/source/uninstallation.md
+      - 附录:
+        - 使用 Dockerfile 构建开发镜像: user_guide/install/source/dockerfile_instruction.md
+        - 使用 Dev Container 构建开发容器: user_guide/install/source/devcontainer_instruction.md
+
+  - 用户指南:
+      - 快速开始: user_guide/quick_start.md
+      - 支持模型: features/supported_matrix.md
+      - 功能特性: 
+        - 加速特性: 
+            - 核心算子加速: features/core_layers.md
+            - 稀疏算法: features/sparse.md
+            - 量化算法: features/quantization.md
+            - 编译优化: features/compilation.md
+            - 多卡并行: features/parallelism.md
+            - 以存代算: features/cache.md
+            - 异步Cpu Offload: features/cpu_offload.md
+            - 共享显存: features/share_memory.md
+            - 动态专家并行负载均衡: features/DyEPLB.md
+      - 环境变量: user_guide/environment_variable.md
+      - 文件目录权限: user_guide/file_directory_permissions_description.md
+  - 开发者指南:
+      - developer_guide/README.md 
+      - 架构设计: architecture.md
+      - 环境构建: developer_guide/build_guide.md
+      - 测试相关: developer_guide/test.md
+      - 开发工具: developer_guide/tooling.md
+  - API参考:
+      - Layer级加速API参考: appendix/api_reference.md
+      - Model级加速API参考: appendix/apis.md
+  - 技术资源:
+      - ./resources/README.md
+  - 社区:
+      - 联系我们: community/contact.md
+      - 治理: 
+        - 贡献: community/contributing.md
+        - 社区治理: community/governance_introduction.md

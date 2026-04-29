@@ -1,0 +1,154 @@
+FROM ubuntu:24.04
+
+ENV USER=root \
+    PATH=/usr/local/bin:/usr/local/cmake/bin:/usr/lib/jvm/default-java/bin:$PATH \
+    JAVA_HOME=/usr/lib/jvm/default-java \
+    PYTHON_VERSION=3.11.4 \
+    DEBIAN_FRONTEND=noninteractive \
+    TZ=Asia/Shanghai \
+    LC_ALL=en_US.UTF-8 \
+    LANG=en_US.UTF-8 \
+    ASCEND_TOOLKIT_HOME=/usr/local/Ascend/ascend-toolkit/latest \
+    ASCEND_HOME_PATH=/usr/local/Ascend/ascend-toolkit/latest
+
+SHELL ["/bin/bash", "-lc"]
+
+RUN echo "dash dash/sh boolean false" | debconf-set-selections && \
+    DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash && \
+    ln -sf /bin/bash /bin/sh
+
+RUN sed -i 's|URIs: http://ports.ubuntu.com/ubuntu-ports/|URIs: https://mirrors.huaweicloud.com/ubuntu-ports/|g' /etc/apt/sources.list.d/ubuntu.sources && \
+    sed -i 's|https://|http://|g' /etc/apt/sources.list.d/ubuntu.sources && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends ca-certificates && \
+    sed -i 's|http://|https://|g' /etc/apt/sources.list.d/ubuntu.sources
+
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt install -y --no-install-recommends \
+        vim wget xz-utils net-tools openssh-client git curl ntpdate \
+        unzip zip tree dos2unix tzdata tcl sudo bzip2 pigz default-jre \
+        locales ccache rapidjson-dev \
+        gcc-9 g++-9 gcc-13 g++-13 make unar rpm2cpio cpio texinfo flex \
+        symlinks sqlite3 libgfortran5 lcov bc file jq cmake \
+        build-essential libssl-dev zlib1g zlib1g-dev libbz2-dev \
+        libreadline-dev libsqlite3-dev libffi-dev liblzma-dev \
+        libncursesw5-dev tk-dev libgdbm-dev libc6-dev && \
+    apt-get clean all && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 90 && \
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 100 && \
+    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 90 && \
+    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-13 100 && \
+    update-alternatives --set gcc /usr/bin/gcc-9 && \
+    update-alternatives --set g++ /usr/bin/g++-9
+
+RUN set -eux; \
+    wget -O python.tar.xz "https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tar.xz"; \
+    mkdir -p /usr/src/python; \
+    tar -xJf python.tar.xz -C /usr/src/python --strip-components=1; \
+    rm python.tar.xz; \
+    cd /usr/src/python; \
+    ./configure \
+        --enable-optimizations \
+        --with-ensurepip=install \
+        --enable-shared \
+        --with-system-ffi \
+        --with-system-expat \
+        LDFLAGS="-Wl,-rpath=/usr/local/lib"; \
+    make -j "$(nproc)"; \
+    make altinstall; \
+    ln -sf /usr/local/bin/python${PYTHON_VERSION%.*} /usr/local/bin/python; \
+    ln -sf /usr/local/bin/python${PYTHON_VERSION%.*} /usr/local/bin/python3; \
+    ln -sf /usr/local/bin/pip${PYTHON_VERSION%.*} /usr/local/bin/pip; \
+    ln -sf /usr/local/bin/pip${PYTHON_VERSION%.*} /usr/local/bin/pip3; \
+    cd /; \
+    rm -rf /usr/src/python; \
+    python --version; \
+    python3 --version; \
+    pip --version; \
+    pip3 --version
+
+RUN mkdir -p /root/.pip && \
+    echo "[global]" > /root/.pip/pip.conf && \
+    echo "index-url=https://repo.huaweicloud.com/repository/pypi/simple" >> /root/.pip/pip.conf && \
+    echo "trusted-host=repo.huaweicloud.com" >> /root/.pip/pip.conf && \
+    echo "timeout=120" >> /root/.pip/pip.conf
+
+RUN rm -f /etc/localtime && \
+    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+    echo "Asia/Shanghai" > /etc/timezone && \
+    locale-gen en_US.UTF-8 zh_CN.UTF-8
+
+RUN cd /tmp && \
+    wget https://ascend-repo.obs.cn-east-2.myhuaweicloud.com/CANN/CANN%208.5.1/Ascend-cann-toolkit_8.5.1_linux-aarch64.run --no-check-certificate && \
+    wget https://ascend-repo.obs.cn-east-2.myhuaweicloud.com/CANN/CANN%208.5.1/Ascend-cann-910b-ops_8.5.1_linux-aarch64.run --no-check-certificate && \
+    wget https://ascend-repo.obs.cn-east-2.myhuaweicloud.com/CANN/CANN%208.5.1/Ascend-cann-nnal_8.5.1_linux-aarch64.run --no-check-certificate && \
+    chmod 777 /tmp/*.run && \
+    yes | ./Ascend-cann-toolkit_*_linux-aarch64.run --install --quiet && \
+    . /usr/local/Ascend/ascend-toolkit/set_env.sh && \
+    yes | ./Ascend-cann-910b-ops_*_linux-aarch64.run --install --quiet && \
+    yes | ./Ascend-cann-nnal_*_linux-aarch64.run --install --quiet && \
+    rm -rf /tmp/*
+
+RUN cd /tmp && \
+    wget -q https://pytorch-package.obs.cn-north-4.myhuaweicloud.com/pta/torch/v2.9.0/torch-2.9.0-cp311-cp311-manylinux_2_28_aarch64.whl && \
+    wget -q https://pytorch-package.obs.cn-north-4.myhuaweicloud.com/pta/Daily/v2.9.0-7.3.0/20260214.4/pytorch_v2.9.0-7.3.0_py311.tar.gz && \
+    python3.11 -m pip install --upgrade pip && \
+    pip3.11 install torch-2.9.0-cp311-cp311-manylinux_2_28_aarch64.whl && \
+    tar -zxf pytorch_v2.9.0-7.3.0_py311.tar.gz && \
+    pip3.11 install torch_npu-2.9.0.*-cp311-cp311-manylinux_2_28_$(uname -i).whl && \
+    rm -rf /tmp/*
+
+RUN echo "pyinstaller==5.8.0" > /tmp/requirements.txt && \
+    echo "wheel==0.42.0" >> /tmp/requirements.txt && \
+    echo "requests" >> /tmp/requirements.txt && \
+    echo "pyyaml==6.0.1" >> /tmp/requirements.txt && \
+    echo "pybind11==2.13.6" >> /tmp/requirements.txt && \
+    echo "setuptools==67.4.0" >> /tmp/requirements.txt && \
+    echo "numpy==1.23.4" >> /tmp/requirements.txt && \
+    echo "pandas~=2.1.4" >> /tmp/requirements.txt && \
+    echo "jsonschema~=4.21.1" >> /tmp/requirements.txt && \
+    echo "jsonlines~=4.0.0" >> /tmp/requirements.txt && \
+    echo "pyarrow~=15.0.0" >> /tmp/requirements.txt && \
+    echo "pydantic~=2.6.3" >> /tmp/requirements.txt && \
+    echo "urllib3>=2.1.0" >> /tmp/requirements.txt && \
+    echo "twine" >> /tmp/requirements.txt && \
+    echo "transformers==4.30.2" >> /tmp/requirements.txt && \
+    echo "scikit-build" >> /tmp/requirements.txt && \
+    echo "decorator>=4.4.0" >> /tmp/requirements.txt && \
+    echo "scipy" >> /tmp/requirements.txt && \
+    echo "psutil" >> /tmp/requirements.txt && \
+    echo "librosa" >> /tmp/requirements.txt && \
+    pip3.11 install -r /tmp/requirements.txt && \
+    rm -rf /tmp/*
+
+RUN mkdir -p /opt/buildtools && cd /opt/buildtools && \
+    wget https://aoe-flow.obs.cn-north-4.myhuaweicloud.com/inference/dockerfile/obsutil_linux_arm64.tar.gz && \
+    tar -zxvf obsutil_linux_arm64.tar.gz && \
+    ln -sf /opt/buildtools/obsutil_linux_arm64_5.5.12/obsutil /usr/local/bin/obsutil && \
+    rm -rf obsutil_linux_arm64.tar.gz
+
+RUN git config --global credential.helper store
+
+RUN echo "export TZ='Asia/Shanghai'" >> ~/.bashrc && \
+    echo "export LC_ALL='en_US.UTF-8'" >> ~/.bashrc && \
+    echo "export LANG='en_US.UTF-8'" >> ~/.bashrc && \
+    echo "source /usr/local/Ascend/ascend-toolkit/set_env.sh" >> ~/.bashrc
+
+WORKDIR /opt/package
+COPY . /opt/package/MindIE-SD
+
+ENV ASCEND_CUSTOM_OPP_PATH=/opt/package/MindIE-SD/mindiesd/ops/vendors/customize:/opt/package/MindIE-SD/mindiesd/ops/vendors/aie_ascendc:${ASCEND_CUSTOM_OPP_PATH}
+
+RUN source /usr/local/Ascend/ascend-toolkit/set_env.sh && \
+    python3.11 -m pip install -r /opt/package/MindIE-SD/requirements/requirements.txt && \
+    cd /opt/package/MindIE-SD && \
+    python3.11 setup.py build_py
+
+RUN mkdir -p /workspace && \
+    ln -s /opt/package/MindIE-SD /workspace/MindIE-SD
+
+WORKDIR /workspace/MindIE-SD
+
+CMD ["/bin/bash"]

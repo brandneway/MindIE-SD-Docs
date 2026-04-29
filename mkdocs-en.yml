@@ -1,0 +1,99 @@
+site_name: MindIE-SD
+site_url: https://mindie-sd.readthedocs.io/en/latest/
+site_author: MindIE-SD Team
+site_description: Ascend Stable Diffusion Inference Acceleration Toolkit Documentation
+repo_url: https://gitcode.com/Ascend/MindIE-SD
+repo_name: MindIE-SD
+docs_dir: docs/en
+
+theme:
+  name: material
+  language: en
+  logo: assets/ascend-logo.png
+  favicon: assets/ascend-favicon.ico
+  font:
+    text: Roboto
+    code: false
+  icon:
+    repo: fontawesome/brands/git-alt
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      toggle:
+        icon: material/brightness-2
+        name: Match system
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.path
+    - content.action.edit
+    - content.code.copy
+    - content.tabs.link
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+
+hooks:
+  - docs/mkdocs/hooks/link_mindiesd.py
+  - docs/mkdocs/hooks/github_admonition.py
+  - docs/mkdocs/hooks/img_width.py
+
+plugins:
+  - search
+  - awesome-nav
+  - glightbox
+  - git-revision-date-localized:
+      enable_creation_date: true
+  - minify:
+      minify_html: true
+
+markdown_extensions:
+  - attr_list
+  - def_list
+  - md_in_html
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.keys
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - toc:
+      permalink: true
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
