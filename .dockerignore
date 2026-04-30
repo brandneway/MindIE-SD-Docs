@@ -1,0 +1,17 @@
+.agents
+.git
+.mypy_cache
+.pytest_cache
+.ruff_cache
+__pycache__
+*.pyc
+*.pyo
+build/build
+dist
+mindiesd.egg-info
+tests/htmlcov
+tests/run.log
+tests/coverage.xml
+tests/UT/htmlcov
+tests/UT/coverage.xml
+test_file/large_file.txt
