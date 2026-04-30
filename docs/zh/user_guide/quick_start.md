@@ -8,10 +8,9 @@
 
 在任意路径下载 Wan2.1 模型仓，并安装模型仓所需依赖。用户可根据需要自行设置权重路径（例：`/home/{用户名}/Wan2.1-T2V-14B`）和推理脚本中的模型参数，参数解释详情请参见[参数配置](https://gitcode.com/Ascend/MindIE-SD/blob/dev/examples/wan/parameter_config.md)
 
-
 ```bash
 git clone https://modelers.cn/MindIE/Wan2.1.git && cd Wan2.1
-pip install -r requirements/requirements.txt
+pip install -r requirements.txt
 
 # Wan2.1-T2V-14B 8 卡推理
 cp MindIE-SD/examples/wan/infer_t2v.sh ./

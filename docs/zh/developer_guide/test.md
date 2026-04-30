@@ -1,12 +1,13 @@
 # 测试
 
 ## 测试说明
+
 测试之前请勿安装MindIE-SD, 已安装的需卸载。
 
 ## 环境准备
 
 ```bash
-python -m pip install -r requirements/requirements.txt
+python -m pip install -r requirements.txt
 python -m pip install -r requirements/requirements-test.txt
 ```
 
@@ -53,6 +54,7 @@ bash run_incremental_test.sh --base dev
 ```
 
 可选参数：
+
 - `--base`: 默认master，指定对比的分支
 
 ## LA 单算子精度测试

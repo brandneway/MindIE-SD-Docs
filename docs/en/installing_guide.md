@@ -67,7 +67,7 @@ This section describes how to prepare and use a MindIE container image.
       ```bash
       git clone https://modelers.cn/MindIE/Wan2.1.git
       cd Wan2.1
-      pip install -r requirements/requirements.txt
+      pip install -r requirements.txt
       ```
 
    2. Install `gcc` and `g++` if they are missing from the container, then export the include path:
@@ -121,7 +121,7 @@ This section describes how to prepare a full development environment on a physic
    Install the model-specific dependencies required for inference:
 
    ```bash
-   pip install -r requirements/requirements.txt
+   pip install -r requirements.txt
    ```
 
 5. Install MindIE SD.

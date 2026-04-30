@@ -14,7 +14,7 @@ Clone the Wan2.1 model repository anywhere, install its requirements, and run th
 
 ```bash
 git clone https://modelers.cn/MindIE/Wan2.1.git && cd Wan2.1
-pip install -r requirements/requirements.txt
+pip install -r requirements.txt
 
 # 8-card inference for Wan2.1-T2V-14B
 cp MindIE-SD/examples/wan/infer_t2v.sh ./

@@ -96,7 +96,7 @@
      tokens = torch_npu.npu_grouped_matmul_finalize_routing()
      ```
 
-#类初始化及接口说明
+# 类初始化及接口说明
 
 - ExpertLoadCollector
   参数说明：

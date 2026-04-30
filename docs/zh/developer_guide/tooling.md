@@ -3,9 +3,11 @@
 本文档说明 MindIE SD 本地开发中常用的文档生成、开发镜像构建与提交前检查命令。
 
 ## 本地文档服务构建
+
 MkDocs 是一个快速、简单且极其精美的静态网站生成器，旨在构建项目文档。文档源文件以 Markdown 编写，并通过单个 YAML 配置文件  mkdocs.yaml 进行配置。
 
 环境依赖位于 `requirements/requirements-mkdocs.txt`。安装：
+
 ```bash
 python -m pip install -r requirements/requirements-mkdocs.txt
 ```

@@ -15,7 +15,7 @@ The main CI build chain is kept in place:
 The SD-specific changes are limited to:
 
 - copying the `MindIE-SD` source tree into the image
-- installing the workspace `requirements/requirements.txt`
+- installing the workspace `requirements.txt`
 - running `python3.11 -m build --wheel --no-isolation`
 - exposing `/workspace/MindIE-SD` as the working directory
 

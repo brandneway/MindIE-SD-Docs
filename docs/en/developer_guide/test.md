@@ -5,7 +5,7 @@
 Use the CPU-friendly UT entrypoint first when you want coverage output and test artifacts without relying on the full NPU runtime stack.
 
 ```bash
-python -m pip install -r requirements/requirements.txt
+python -m pip install -r requirements.txt
 python -m pip install -r requirements/requirements-test.txt
 bash tests/run_UT_test.sh
 ```

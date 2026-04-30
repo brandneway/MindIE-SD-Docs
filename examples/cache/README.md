@@ -13,10 +13,10 @@
 
     ```shell
     git clone https://modelers.cn/MindIE/Qwen-Image-Edit-2509.git && cd Qwen-Image-Edit-2509
-    pip install -r requirements/requirements.txt
+    pip install -r requirements.txt
     ```
 
-3. 将`examples/cache`目录下的[cache.py](https://gitcode.com/Ascend/MindIE-SD/blob/dev/examples/cache/cache.py)文件拷贝到Qwen-Image-Edit-2509目录下。
+3. 将`examples/cache`目录下的[cache.py](cache.py)文件拷贝到Qwen-Image-Edit-2509目录下。
 
     关于该模型的更多内容请参考[魔乐社区](https://modelers.cn/models/MindIE/Qwen-Image-Edit-2509)。
 

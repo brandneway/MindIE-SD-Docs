@@ -3,25 +3,15 @@ nav:
   - 安装指南:
       - user_guide/install/README.md
       - 安装说明: user_guide/install/installation_introduction.md
-      - MindIE安装: 
+      - MindIE-SD 安装、升级与卸载: 
         - 环境准备: user_guide/install/source/environment_preparation.md
-        - 镜像安装:
-          - 镜像使用指南: user_guide/install/source/image_usage_guide.md
-          - Docker 安装: user_guide/install/source/docker_installation.md
-        - 物理机安装:
-          - 准备软件包和依赖: user_guide/install/source/preparing_software_and_dependencies.md
-          - 安装软件包和依赖: user_guide/install/source/installing_software_and_dependencies.md
-          - 安装MindIE软件包: user_guide/install/source/installation_on_a_physical_machine.md
-        - 容器化安装: user_guide/install/source/installation_in_containerized.md
-      - MindIE-SD独立安装: 
-        - pip源安装: user_guide/install/source/installation_via_pip.md
-        - 源码编译安装: user_guide/install/source/installation_from_source_code.md
-      - 升级: user_guide/install/source/upgrade.md
-      - 卸载: user_guide/install/source/uninstallation.md
-      - 附录:
+        - 安装: 
+            - 开源whl文件安装: user_guide/install/source/installation_via_pip.md
+            - 源码编译安装: user_guide/install/source/installation_from_source_code.md
+        - 升级: user_guide/install/source/upgrade.md
+        - 卸载: user_guide/install/source/uninstallation.md
         - 使用 Dockerfile 构建开发镜像: user_guide/install/source/dockerfile_instruction.md
         - 使用 Dev Container 构建开发容器: user_guide/install/source/devcontainer_instruction.md
-
   - 用户指南:
       - 快速开始: user_guide/quick_start.md
       - 支持模型: features/supported_matrix.md

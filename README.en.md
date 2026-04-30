@@ -15,7 +15,7 @@ Complete the environment preparation and MindIE SD installation first, then inst
 ```bash
 git clone https://modelers.cn/MindIE/Wan2.1.git
 cd Wan2.1
-pip install -r requirements/requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Documentation
