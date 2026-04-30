@@ -7,7 +7,7 @@ This document describes the common local commands for documentation generation, 
 Documentation build dependencies are listed in `docs/requirements-docs.txt`. To generate the local HTML site:
 
 ```bash
-python -m pip install -r requirements/requirements-mkdocs.txt
+python -m pip install -r docs/requirements-docs.txt
 sphinx-build -b html docs docs/_build/html
 ```
 
@@ -23,10 +23,10 @@ docker build --network=host -f docker/Dockerfile_910b_aarch64.ubuntu -t mindiesd
 
 ## Lint and Pre-Commit Checks
 
-Lint-related dependencies are listed in `requirements/requirements-lint.txt`. Before the first local commit, install and enable `pre-commit`:
+Lint-related dependencies are listed in `requirements-lint.txt`. Before the first local commit, install and enable `pre-commit`:
 
 ```bash
-python -m pip install -r requirements/requirements-lint.txt
+python -m pip install -r requirements-lint.txt
 pre-commit install
 pre-commit run --all-files
 ```

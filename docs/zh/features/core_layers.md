@@ -1,4 +1,4 @@
-# 核心算子加速API
+# 核心加速API
 
 本文档描述 `mindiesd` 包通过 `layers` 模块对外暴露的接口。所有接口均可通过 `from mindiesd import <接口名>` 直接导入使用。
 
@@ -248,7 +248,7 @@ out = sparse_attention(
 from mindiesd import rotary_position_embedding
 ```
 
-#### 函数签名
+### 函数签名
 
 ```python
 rotary_position_embedding(

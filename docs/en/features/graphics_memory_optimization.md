@@ -12,7 +12,7 @@ Refer to [Tensor Parallel](./parallelism.md#tensor-parallel) in the multi-card p
 
   In multi-instance scenarios, multiple models may use the same weights on a single NPU device, as shown below. Graphics memory sharing can reduce the overall footprint in that case.
 
-  ![](../figures/%E6%98%BE%E5%AD%98%E5%85%B1%E4%BA%AB-image-1.png)
+  ![](../../zh/figures/%E6%98%BE%E5%AD%98%E5%85%B1%E4%BA%AB-image-1.png)
 
 - **Theoretical basis**
 
@@ -24,7 +24,7 @@ Refer to [Tensor Parallel](./parallelism.md#tensor-parallel) in the multi-card p
 
 - **Implementation flow**
 
-  ![](../figures/%E6%98%BE%E5%AD%98%E5%85%B1%E4%BA%AB-image-2.png)
+  ![](../../zh/figures/%E6%98%BE%E5%AD%98%E5%85%B1%E4%BA%AB-image-2.png)
 
   1. Process 0 calculates the required memory size and offset, then allocates memory through an inter-process shared NPU allocator.
   2. The NPU allocator returns the physical address `data_ptr` to process 0.
@@ -47,7 +47,7 @@ Refer to [Tensor Parallel](./parallelism.md#tensor-parallel) in the multi-card p
 
   The figures below show the standard offload flow and the asynchronous offload flow:
 
-  ![](../figures/offload%E6%B5%81%E7%A8%8B-image.png) ![](../figures/%E5%BC%82%E6%AD%A5offload-image.png)
+  ![](../../zh/figures/offload%E6%B5%81%E7%A8%8B-image.png) ![](../../zh/figures/%E5%BC%82%E6%AD%A5offload-image.png)
 
 ## Quantization
 

@@ -50,10 +50,10 @@ Reviewers 负责：
 
 ## 信息来源
 
-角色名单与仓库工作流使用的角色来源以 [`OWNERS`](./OWNERS) 为准。
+角色名单与仓库工作流使用的角色来源以 [`OWNERS`](../../../OWNERS) 为准。
 
 ## 社区规范
 
-- 遵守 [`CODE_OF_CONDUCT.md`](./CODE_OF_CONDUCT.md)。
+- 遵守 [`CODE_OF_CONDUCT.md`](../../../CODE_OF_CONDUCT.md)。
 - 用户可见变更必须同步更新测试、文档和变更记录。
 - 重大接口变更、行为变更和发布策略变更应先提交 RFC。

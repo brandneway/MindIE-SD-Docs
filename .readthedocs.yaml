@@ -12,7 +12,7 @@ build:
     create_environment:
       - uv venv $READTHEDOCS_VIRTUALENV_PATH
     install:
-      - uv pip install --python $READTHEDOCS_VIRTUALENV_PATH/bin/python --no-cache-dir -r requirements/requirements-mkdocs.txt
+      - uv pip install --python $READTHEDOCS_VIRTUALENV_PATH/bin/python --no-cache-dir -r docs/mkdocs/requirements.txt
 
 mkdocs:
   configuration: mkdocs.yml

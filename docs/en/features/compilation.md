@@ -42,6 +42,6 @@ class FluxSingleTransformerBlock(nn.Module):
 
 ## Troubleshooting tips
 
-- Troubleshooting follows the same workflow as standard PyTorch `compile`. The logging helpers defined in [mindie_sd_backend.py](https://gitcode.com/Ascend/MindIE-SD/blob/dev/mindiesd/compilation/mindie_sd_backend.py) can be enabled to observe the graph before and after pattern enablement. Together with narrowing the `torch.compile` scope, this helps identify why a pattern fails to match.
+- Troubleshooting follows the same workflow as standard PyTorch `compile`. The logging helpers defined in [mindie_sd_backend.py](../../../mindiesd/compilation/mindie_sd_backend.py) can be enabled to observe the graph before and after pattern enablement. Together with narrowing the `torch.compile` scope, this helps identify why a pattern fails to match.
 - You can narrow the troubleshooting scope effectively by controlling how much of the model is compiled.
 - Additional troubleshooting guidance can be found in the [PyTorch `torch.compile` documentation](https://docs.pytorch.org/docs/main/generated/torch.compile.html).

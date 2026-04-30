@@ -1,6 +1,6 @@
-# Model级核心加速接口
+# API 参考
 
-本文档描述 `mindiesd` 包中除 `layers` 模块外的核心接口，是针对Model级优化的核心加速接口。所有接口均可通过 `from mindiesd import <接口名>` 直接导入使用。
+本文档描述 `mindiesd` 包中除 `layers` 模块外的核心接口。所有接口均可通过 `from mindiesd import <接口名>` 直接导入使用。
 
 ## 缓存系列
 

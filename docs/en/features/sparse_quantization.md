@@ -14,7 +14,7 @@
 
   The figure below shows an INT8 quantization example in which FP32 values are mapped to INT8 values. `[-max(|xf|), max(|xf|)]` is the floating-point range before quantization, and `[-128, 127]` is the value range after quantization.
 
-  ![](../figures/INT8-image.png)
+  ![](../../zh/figures/INT8-image.png)
 
 - Constraints: this feature is currently supported only on Atlas 800I A2 inference servers.
 - Optimization workflow:
@@ -69,7 +69,7 @@ Its core ideas are:
 
 - Offline feature mining: attention in DiT diffusion generation contains temporal and spatial redundancy. Attention heads can be divided into three sparse types, corresponding to three static attention masks.
 
-  ![](../figures/RainFusion-image-1.png)
+  ![](../../zh/figures/RainFusion-image-1.png)
 
   - Spatial head: attends to all tokens in the current or key frame, focusing on spatial consistency within a single frame.
   - Temporal head: attends to corresponding local regions across multiple frames, focusing on periodic sparsity in long sequences.
@@ -77,4 +77,4 @@ Its core ideas are:
 
 - Online classification: a lightweight online decision module called ARM is introduced to classify the sparse type of each head at runtime.
 
-  ![](../figures/RainFusion-image-2.png)
+  ![](../../zh/figures/RainFusion-image-2.png)

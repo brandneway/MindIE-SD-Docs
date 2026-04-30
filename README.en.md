@@ -20,6 +20,7 @@ pip install -r requirements.txt
 
 ## Documentation
 
+- English overview: [docs/en/README.md](docs/en/README.md)
 - English quick start: [docs/en/quick_start.md](docs/en/quick_start.md)
 - English installation guide: [docs/en/installing_guide.md](docs/en/installing_guide.md)
 - English user guide: [docs/en/menu_user_manual.md](docs/en/menu_user_manual.md)
@@ -30,8 +31,8 @@ pip install -r requirements.txt
 - English parallelism features: [docs/en/features/parallelism.md](docs/en/features/parallelism.md)
 - English sparse quantization: [docs/en/features/sparse_quantization.md](docs/en/features/sparse_quantization.md)
 - Chinese overview: [docs/zh/index.md](docs/zh/index.md)
-- Chinese quick start: [docs/zh/user_guide/quick_start.md](docs/zh/user_guide/quick_start.md)
-- Chinese installation guide: [docs/zh/user_guide/install/README.md](docs/zh/user_guide/install/README.md)
+- Chinese quick start: [docs/zh/quick_start.md](docs/zh/quick_start.md)
+- Chinese installation guide: [docs/zh/installing_guide.md](docs/zh/installing_guide.md)
 - Chinese architecture: [docs/zh/architecture.md](docs/zh/architecture.md)
 
 ## Community and governance

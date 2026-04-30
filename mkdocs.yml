@@ -1,100 +1,95 @@
-site_name: MindIE-SD-Doc
-site_url: https://mindie-sd-doc.readthedocs.io/zh-cn/latest/
-site_author: MindIE-SD Team
-site_description: 华为昇腾 Stable Diffusion 推理加速工具包文档
-repo_url: https://gitcode.com/Ascend/MindIE-SD
-repo_name: MindIE-SD
+site_name: MindIE SD 文档
+site_url: https://mindie-sd.readthedocs.io/zh-cn/latest/
+site_description: MindIE SD - 昇腾 Stable Diffusion 推理加速工具包中文文档
+site_author: Huawei Technologies Co., Ltd.
+
 docs_dir: docs/zh
+site_dir: site
 
 theme:
   name: material
   language: zh
-  logo: assets/ascend-logo.png
-  favicon: assets/ascend-favicon.ico
-  font:
-    text: Roboto
-    code: false
-  icon:
-    repo: fontawesome/brands/git-alt
   palette:
-    - media: "(prefers-color-scheme)"
-      toggle:
-        icon: material/brightness-auto
-        name: 切换到亮色模式
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: white
+      primary: indigo
+      accent: indigo
       toggle:
         icon: material/brightness-7
-        name: 切换到暗色模式
+        name: 切换到深色模式
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: black
+      primary: indigo
+      accent: indigo
       toggle:
-        icon: material/brightness-2
-        name: 跟随系统
+        icon: material/brightness-4
+        name: 切换到浅色模式
   features:
-    - navigation.instant
-    - navigation.instant.progress
-    - navigation.tracking
     - navigation.tabs
-    - navigation.tabs.sticky
     - navigation.sections
-    - navigation.indexes
+    - navigation.expand
     - navigation.top
-    - navigation.path
-    - content.action.edit
-    - content.code.copy
-    - content.tabs.link
-    - search.highlight
-    - search.share
     - search.suggest
-    - toc.follow
-
-hooks:
-  - docs/mkdocs/hooks/encode_image_urls.py
-  - docs/mkdocs/hooks/github_admonition.py
-  - docs/mkdocs/hooks/img_width.py
+    - search.highlight
+    - content.code.copy
+  icon:
+    repo: fontawesome/brands/git-alt
 
 plugins:
-  - search
-  - awesome-nav
-  - glightbox
-  - git-revision-date-localized:
-      enable_creation_date: true
-  - minify:
-      minify_html: true
+  - search:
+      lang:
+        - zh
+        - en
 
 markdown_extensions:
-  - attr_list
-  - def_list
-  - md_in_html
-  - admonition
-  - pymdownx.details
-  - pymdownx.superfences
-  - pymdownx.tabbed:
-      alternate_style: true
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
-  - pymdownx.arithmatex:
-      generic: true
+      pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
-  - pymdownx.caret
-  - pymdownx.mark
-  - pymdownx.tilde
-  - pymdownx.keys
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+  - tables
   - toc:
       permalink: true
-      slugify: !!python/name:markdown.extensions.toc.slugify_unicode
+      toc_depth: 3
+  - attr_list
+  - md_in_html
+
+nav:
+  - 首页: index.md
+  - 快速开始:
+      - 安装指导: installation.md
+      - 快速开始: quick_start.md
+  - 加速特性:
+      - 架构设计: architecture.md
+      - 稀疏加速: features/sparse.md
+      - 量化特性: features/quantization.md
+      - 核心算子: features/core_layers.md
+      - 编译加速: features/compilation.md
+      - 并行策略: features/parallelism.md
+      - 以存代算: features/cache.md
+      - CPU卸载: features/cpu_offload.md
+      - 显存共享: features/share_memory.md
+      - DyEPLB: features/DyEPLB.md
+  - 开发者指南:
+      - 构建指南: developer_guide/build_guide.md
+      - 测试指南: developer_guide/test.md
+      - 工具与文档: developer_guide/tooling.md
+  - 附录:
+      - API说明: appendix/apis.md
+      - 支持矩阵: features/supported_matrix.md
+  - 社区:
+      - 社区治理: community/governance.md
+  - 技术报告:
+      - RainFusion 2.0: tech_report/RainFusion2.0.pdf
 
 extra_css:
   - stylesheets/extra.css
 
-extra_javascript:
-  - javascripts/mathjax.js
-  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+hooks:
+  - docs/mkdocs/hooks.py

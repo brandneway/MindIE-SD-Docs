@@ -6,7 +6,7 @@ Use the CPU-friendly UT entrypoint first when you want coverage output and test 
 
 ```bash
 python -m pip install -r requirements.txt
-python -m pip install -r requirements/requirements-test.txt
+python -m pip install -r requirements-test.txt
 bash tests/run_UT_test.sh
 ```
 

@@ -1,23 +1,13 @@
 # 测试
 
-## 测试说明
-
-测试之前请勿安装MindIE-SD, 已安装的需卸载。
-
-## 环境准备
-
-```bash
-python -m pip install -r requirements.txt
-python -m pip install -r requirements/requirements-test.txt
-```
-
 ## CPU 友好单元测试
 
 推荐优先使用仓库当前提供的 CPU 友好 UT 入口，生成覆盖率与测试产物。
 
 ```bash
-cd tests/
-bash run_UT_test.sh
+python -m pip install -r requirements.txt
+python -m pip install -r requirements-test.txt
+bash tests/run_UT_test.sh
 ```
 
 默认生成的产物位于 `tests/UT/` 目录，包括：
@@ -34,28 +24,14 @@ bash run_UT_test.sh
 当环境具备 Ascend/NPU 运行栈时，可使用现有包装脚本执行全量或按模式测试：
 
 ```bash
-cd tests/
-bash run_test.sh --all
+bash tests/run_test.sh --all
 ```
 
 可选参数：
 
-- `--cpu_only`: 测试CPU可运行的用例
-- `--npu_only`: 测试须NPU运行的用例
-- `--all`: 测试所有用例，默认情况
-
-## 增量测试入口
-
-使用增量测试脚本，可以只运行与本次变更相关的测试用例：
-
-```bash
-cd tests/
-bash run_incremental_test.sh --base dev
-```
-
-可选参数：
-
-- `--base`: 默认master，指定对比的分支
+- `--cpu_only`
+- `--npu_only`
+- `--all`
 
 ## LA 单算子精度测试
 
