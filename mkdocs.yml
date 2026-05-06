@@ -1,6 +1,6 @@
 site_name: MindIE SD 文档
 site_url: https://mindie-sd.readthedocs.io/zh-cn/latest/
-site_description: MindIE SD - 昇腾 Stable Diffusion 推理加速工具包中文文档
+site_description: MindIE SD - 昇腾多模态加速系列套件中文文档
 site_author: Huawei Technologies Co., Ltd.
 
 docs_dir: docs/zh
@@ -25,7 +25,6 @@ theme:
         icon: material/brightness-4
         name: 切换到浅色模式
   features:
-    - navigation.tabs
     - navigation.sections
     - navigation.expand
     - navigation.top
@@ -81,15 +80,12 @@ nav:
       - 测试指南: developer_guide/test.md
       - 工具与文档: developer_guide/tooling.md
   - 附录:
-      - API说明: appendix/apis.md
       - 支持矩阵: features/supported_matrix.md
   - 社区:
       - 社区治理: community/governance.md
-  - 技术报告:
-      - RainFusion 2.0: tech_report/RainFusion2.0.pdf
 
 extra_css:
-  - stylesheets/extra.css
+  - mkdocs/extra.css
 
 hooks:
   - docs/mkdocs/hooks.py
