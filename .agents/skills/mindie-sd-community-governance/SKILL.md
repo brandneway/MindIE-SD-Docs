@@ -90,7 +90,7 @@ description: "Handle MindIE-SD documentation, governance, contributor workflow, 
 - `docs/zh/menu_user_manual.md` 或 `docs/en/menu_user_manual.md`，如果修改影响导航
 - `docs/conf.py`
 - `.readthedocs.yaml`
-- `requirements/requirements-mkdocs.txt`
+- `docs/requirements-docs.txt`
 
 ### 3.4 Contributor workflow 变更
 
@@ -179,7 +179,7 @@ description: "Handle MindIE-SD documentation, governance, contributor workflow, 
 - 本地提交前检查入口统一使用 `pre-commit`
 - 事实依据来自 `README.md`、`docs/zh/developer_guide/test.md` 与 `docs/zh/developer_guide/tooling.md`
 - 最小检查命令：
-  - `python -m pip install -r requirements/requirements-lint.txt`
+  - `python -m pip install -r requirements-lint.txt`
   - `pre-commit install`
   - `pre-commit run --all-files`
 - `git commit --no-verify` 只在明确需要绕过时使用
@@ -199,9 +199,8 @@ description: "Handle MindIE-SD documentation, governance, contributor workflow, 
 - 修改首页、目录、用户手册入口时，检查 `docs/index.md`、`docs/zh/menu_user_manual.md`、`docs/en/menu_user_manual.md`
 - 修改 developer guide 结构时，检查中英文 developer guide 入口是否同步
 - 涉及文档文件、导航或文档配置修改时，默认给出最小站点验证路径：
-- `python -m pip install -r requirements/requirements-mkdocs.txt`
-- `mkdocs build -f mkdocs.yml`
-- `mkdocs build -f mkdocs-en.yml`
+- `python -m pip install -r docs/requirements-docs.txt`
+- `python -m sphinx -b html docs docs/_build/html`
 - 若未实际执行编译，必须明确写“未执行，仅给出建议验证命令”
 
 ## 6. 一致性检查项
